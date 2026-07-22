@@ -1,24 +1,20 @@
 import speech_recognition as sr
 import time
 
-running = True
-
 r = sr.Recognizer()
-
-def callback(recognizer, audio):
-    global running
-    try:
-        text = recognizer.recognize_google(audio)
-        if text == "stop":
-            running = False 
-        else:
-            print("You said : " + text)
-    except:
-        print("Error")
-
-source = sr.Microphone()
 r.energy_threshold = 50
-stop_listening = r.listen_in_background(source, callback)
+r.pause_threshold = 1.5
 
-while running:
-    time.sleep(1)
+def VoiceReco():
+
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source, duration=1)
+
+    try:
+        audio = r.listen(source, timeout=10, phrase_time_limit=15)
+
+        text = r.recognize_google(audio)
+        return text
+    except Exception:
+        return ""
+    
