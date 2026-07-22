@@ -1,15 +1,27 @@
 import asyncio
 import edge_tts
+import pygame
+import io
 
-text = "Hi there! I am your voice assistant. How can I help you today?"
-voice = "en-US-AndrewNeural"
-output_file = "output.mp3"
 
-async def text_to_speech() -> None:
-    """Main function"""
-    communicate = edge_tts.Communicate(text, voice)
-    await communicate.save(output_file)
+async def text_to_speech(text) -> None:
+    pygame.mixer.init()
+    
+    stream = io.BytesIO()
+    communicator = edge_tts.Communicate(text, "en-US-AndrewNeural")
 
-if __name__ == "__main__":
-    asyncio.run(text_to_speech())
+    async for chunk in communicator.stream():
+        if chunk["type"] == "audio":
+            stream.write(chunk["data"])
+
+    stream.seek(0)
+
+    pygame.mixer.music.load(stream)
+    pygame.mixer.music.play()
+    
+    while pygame.mixer.music.get_busy():
+        await asyncio.sleep(0.1)
+    
+    pygame.mixer.quit()
+    stream.close()
 
