@@ -3,6 +3,7 @@ import edge_tts
 import pygame
 import io
 
+# want to get rid of pygame and just go straight to speakers, use seperate library to fix lag
 
 async def text_to_speech(text) -> None:
     pygame.mixer.init()
