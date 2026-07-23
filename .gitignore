@@ -1,0 +1,19 @@
+# Ignore private environment variables and API keys
+.env
+secret.txt
+keys.py
+
+# Ignore Python runtime cache folders
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local virtual environments (if you use them)
+venv/
+.venv/
+env/
+
+# Ignore OS-specific system files
+.DS_Store
+Thumbs.db
