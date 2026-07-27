@@ -4,8 +4,9 @@ import pygame
 import io
 
 # want to get rid of pygame and just go straight to speakers, use seperate library to fix lag
-pygame.mixer.init()
+
 async def text_to_speech(text) -> None:
+    pygame.mixer.init()
     stream = io.BytesIO()
     communicator = edge_tts.Communicate(text, "en-US-AndrewNeural")
 
