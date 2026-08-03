@@ -1,7 +1,7 @@
 # Wilsun AI Voice Assistant 
 
 Wilsun is a lightweight, responsive desktop AI voice assistant built entirely in Python. It features a modern, clean graphical user interface, real-time speech recognition, fast cloud AI processing, and file-less in-memory text-to-speech streaming.
-
+![Physics Sandbox Demo](wilsun.png)
 ##  Features
 - **Modern UI:** Clean split-screen design built using CustomTkinter.
 - **Push-to-Talk:** Simple button-triggered active microphone listening.
